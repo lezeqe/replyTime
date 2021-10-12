@@ -1,0 +1,1 @@
+"C:\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-3gtjb4u1d482c7d0 --n quickstartFunctions --r --project "C:\A_huifuTime628\huifuTime02" --report

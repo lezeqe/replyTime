@@ -1,0 +1,99 @@
+<van-notice-bar wrapable scrollable="{{ false }}" color="#1296db" background="#ecf9ff"
+  text="提示：四个按钮分别是开始、停止、重置、秒回。每次记录开始，都提前加三分钟。" />
+
+<view class="cu-list menu-avatar">
+  <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{DuixiangList}}" wx:key
+    bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+    data-target="move-box-{{index}}">
+
+    <view class="content">
+      <view class="text-grey">{{item.name}}</view>
+    </view>
+
+    <view class="">
+      <view class="text-grey shijian">
+        <text class='marright'>{{displayTimeList[index]}}</text>
+        
+      </view>
+    </view>
+
+    <van-grid clickable column-num="4">
+      <van-grid-item icon="play-circle-o" bindclick="onStartHandler" data-index="{{index}}" />
+      <van-grid-item icon="pause-circle-o" bindclick="onStopHandler" data-index="{{index}}" />
+      <van-grid-item icon="replay" bindclick="reset" data-index="{{index}}" />
+      <van-grid-item icon="add-o" data-index="{{index}}" />
+    </van-grid>
+
+    <view class="move">
+      <view class="bg-grey">置顶</view>
+      <view class="bg-red" bindtap="delDuixiang" data-dxidd="{{item._id}}">删除</view>
+    </view>
+
+
+  </view>
+</view>
+
+<!-- 添加按钮 -->
+<van-button round class="btvant1" bindtap="tanchuKuang">
+  <text class="cuIcon-add lg text-white"></text>
+</van-button>
+
+
+<!-- 海报分享按钮 -->
+<van-button round class="btvant2" bindtap="createCanvasImage">
+  <text class="cuIcon-forward lg text-white"></text>
+</van-button>
+
+
+<!-- 弹出框 -->
+<block wx:if="{{isShowConfirm}}">
+  <view class='toast-box'>
+    <view class='toastbg'></view>
+    <view class='showToast'>
+      <view class='toast-title'>
+        <text>添加记录对象</text>
+      </view>
+      <view class='toast-main'>
+        <view class='toast-input'>
+          <input placeholder='请输入对方的昵称' bindinput="NameInput" maxlength='5'></input>
+        </view>
+      </view>
+
+      <view class='toast-button'>
+        <view class='button1'>
+          <button catchtap='cancel'>取消</button>
+        </view>
+        <view class='button2'>
+          <button data-url="../allOrder/allOrder" catchtap='confirmAcceptance'>确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<!-- 弹出框 -->
+<block wx:if="{{isShowConfirm}}">
+  <view class='toast-box'>
+    <view class='toastbg'></view>
+    <view class='showToast'>
+      <view class='toast-title'>
+        <text>添加回复记录</text>
+      </view>
+      <view class='toast-main'>
+
+        <view class='toast-input'>
+          <input placeholder='请输入对方的昵称' bindinput="NameInput" maxlength='5'></input>
+        </view>
+
+      </view>
+      <view class='toast-button'>
+        <view class='button1'>
+          <button catchtap='cancel'>取消</button>
+        </view>
+        <view class='button2'>
+          <button data-url="../allOrder/allOrder" catchtap='confirmAcceptance'>确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
